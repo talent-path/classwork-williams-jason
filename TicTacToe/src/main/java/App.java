@@ -7,7 +7,7 @@ public class App {
     static boolean isPlayersTurn = true;
 
     public static void main(String[] args) {
-
+        //test 123
         startGame();
 
     }

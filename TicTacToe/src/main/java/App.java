@@ -5,10 +5,18 @@ public class App {
 
     static Scanner input = new Scanner(System.in);
     static boolean isPlayersTurn = true;
+    static int wins = 0, loses = 0, ties = 0;
 
     public static void main(String[] args) {
-        //test 123
-        startGame();
+        System.out.println("how many games would you like to play?");
+        int numGames = input.nextInt();
+        for (int i = 0; i < numGames; i++) {
+            startGame();
+        }
+
+        System.out.println("you won " + wins + " times");
+        System.out.println("you lost " + loses + " times");
+        System.out.println("you tied " + ties + " times");
 
     }
 
@@ -35,11 +43,11 @@ public class App {
 
     public static void printBoard(String[] board) {
 
-        System.out.println(board[0]+" | "+board[1]+" | "+board[2]);
+        System.out.println(board[0] + " | " + board[1] + " | " + board[2]);
         System.out.println("---------");
-        System.out.println(board[3]+" | "+board[4]+" | "+board[5]);
+        System.out.println(board[3] + " | " + board[4] + " | " + board[5]);
         System.out.println("---------");
-        System.out.println(board[6]+" | "+board[7]+" | "+board[8]);
+        System.out.println(board[6] + " | " + board[7] + " | " + board[8]);
 
         System.out.println();
 
@@ -97,8 +105,13 @@ public class App {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printBoard(board);
             System.out.println("game over!");
-            if (isPlayersTurn) System.out.println("you win!");
-            else System.out.println("you lose!");
+            if (isPlayersTurn) {
+                System.out.println("you win!");
+                wins++;
+            } else {
+                System.out.println("you lose!");
+                loses++;
+            }
             contGame = false;
 
         } else if (board[3].equals(board[4]) && board[4].equals(board[5]) &&
@@ -107,8 +120,13 @@ public class App {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printBoard(board);
             System.out.println("game over!");
-            if (isPlayersTurn) System.out.println("you win!");
-            else System.out.println("you lose!");
+            if (isPlayersTurn) {
+                System.out.println("you win!");
+                wins++;
+            } else {
+                System.out.println("you lose!");
+                loses++;
+            }
             contGame = false;
 
         } else if (board[6].equals(board[7]) && board[7].equals(board[8]) &&
@@ -117,8 +135,13 @@ public class App {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printBoard(board);
             System.out.println("game over!");
-            if (isPlayersTurn) System.out.println("you win!");
-            else System.out.println("you lose!");
+            if (isPlayersTurn) {
+                System.out.println("you win!");
+                wins++;
+            } else {
+                System.out.println("you lose!");
+                loses++;
+            }
             contGame = false;
 
         }
@@ -131,8 +154,13 @@ public class App {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printBoard(board);
             System.out.println("game over!");
-            if (isPlayersTurn) System.out.println("you win!");
-            else System.out.println("you lose!");
+            if (isPlayersTurn) {
+                System.out.println("you win!");
+                wins++;
+            } else {
+                System.out.println("you lose!");
+                loses++;
+            }
             contGame = false;
 
         } else if (board[1].equals(board[4]) && board[4].equals(board[7]) &&
@@ -141,8 +169,13 @@ public class App {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printBoard(board);
             System.out.println("game over!");
-            if (isPlayersTurn) System.out.println("you win!");
-            else System.out.println("you lose!");
+            if (isPlayersTurn) {
+                System.out.println("you win!");
+                wins++;
+            } else {
+                System.out.println("you lose!");
+                loses++;
+            }
             contGame = false;
 
         } else if (board[2].equals(board[5]) && board[5].equals(board[8]) &&
@@ -151,8 +184,13 @@ public class App {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printBoard(board);
             System.out.println("game over!");
-            if (isPlayersTurn) System.out.println("you win!");
-            else System.out.println("you lose!");
+            if (isPlayersTurn) {
+                System.out.println("you win!");
+                wins++;
+            } else {
+                System.out.println("you lose!");
+                loses++;
+            }
             contGame = false;
 
         }
@@ -165,8 +203,13 @@ public class App {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printBoard(board);
             System.out.println("game over!");
-            if (isPlayersTurn) System.out.println("you win!");
-            else System.out.println("you lose!");
+            if (isPlayersTurn) {
+                System.out.println("you win!");
+                wins++;
+            } else {
+                System.out.println("you lose!");
+                loses++;
+            }
             contGame = false;
 
         } else if (board[2].equals(board[4]) && board[4].equals(board[6]) &&
@@ -175,8 +218,13 @@ public class App {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printBoard(board);
             System.out.println("game over!");
-            if (isPlayersTurn) System.out.println("you win!");
-            else System.out.println("you lose!");
+            if (isPlayersTurn) {
+                System.out.println("you win!");
+                wins++;
+            } else {
+                System.out.println("you lose!");
+                loses++;
+            }
             contGame = false;
 
         } else if (turns == 9) {
@@ -184,6 +232,7 @@ public class App {
             printBoard(board);
             System.out.println("its a tie!");
             contGame = false;
+            ties++;
         }
 
         return contGame;

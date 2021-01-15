@@ -8,8 +8,11 @@ public class App {
     static int wins = 0, loses = 0, ties = 0;
 
     public static void main(String[] args) {
+
+
         System.out.println("how many games would you like to play?");
         int numGames = input.nextInt();
+
         for (int i = 0; i < numGames; i++) {
             startGame();
         }
@@ -33,7 +36,7 @@ public class App {
             turns++;
             noWinner = checkWinner(board, turns);
             if (!noWinner) break;
-            computerTurn(board);
+            smartComputerTurn(board);
             turns++;
             noWinner = checkWinner(board, turns);
         }
@@ -77,7 +80,7 @@ public class App {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
-    public static void computerTurn(String[] board) {
+    public static void dumbComputerTurn(String[] board) {
         Random rand = new Random();
         boolean validMove = false;
         int pos;
@@ -94,6 +97,73 @@ public class App {
         }
 
         isPlayersTurn = false;
+    }
+
+    public static void smartComputerTurn(String[] board) {
+        Random rand = new Random();
+        boolean validMove = false;
+        int pos;
+
+
+        for (int i = 0; i < board.length; i++) {
+            if (smartMove(board, i)) {
+                board[i] = "O";
+                validMove = true;
+            }
+        }
+        while (!validMove) {
+            pos = rand.nextInt(9);
+            System.out.println();
+            if (board[pos].isBlank()) {
+                board[pos] = "O";
+                validMove = true;
+            }
+        }
+
+        isPlayersTurn = false;
+    }
+
+    public static boolean smartMove(String[] board, int index) {
+        boolean isSmartMove = false;
+
+        //check for horizontal wins
+        for (int i = 0; i < board.length; i++) {
+
+            if (i % 3 == 0 && (board[index + 1].isBlank() && (board[index + 1].equals(board[index + 2])))) {
+                isSmartMove = true;
+            } else if (i % 3 == 1 && (board[index + 1].isBlank() && (board[index + 1].equals(board[index - 1])))) {
+                isSmartMove = true;
+            } else if (i % 3 == 2 && (board[index - 1].isBlank() && (board[index - 1].equals(board[index - 2])))) {
+                isSmartMove = true;
+            }
+        }
+        //check for vertical wins
+        for (int i = 0; i < board.length; i++) {
+
+            if (i % 3 == 0 && (board[index + 3].isBlank() && (board[index + 3].equals(board[index + 6])))) {
+                isSmartMove = true;
+            } else if (i % 3 == 1 && (board[index + 3].isBlank() && (board[index + 3].equals(board[index - 3])))) {
+                isSmartMove = true;
+            } else if (i % 3 == 2 && (board[index - 3].isBlank() && (board[index - 3].equals(board[index - 6])))) {
+                isSmartMove = true;
+            }
+        }
+
+        //check for diagonal wins
+        if (index == 0 && !board[index + 4].isBlank() && board[index + 4].equals(board[index + 8])) {
+            isSmartMove = true;
+        } else if (index == 2 && !board[index + 2].isBlank() && board[index + 2].equals(board[index + 4])) {
+            isSmartMove = true;
+        } else if (index == 6 && !board[index - 2].isBlank() && board[index - 2].equals(board[index - 4])) {
+            isSmartMove = true;
+        } else if (index == 8 && !board[index - 4].isBlank() && board[index - 4].equals(board[index - 8])) {
+            isSmartMove = true;
+        } else if (index == 4 && (!board[index - 4].isBlank() || !board[index - 2].isBlank()) &&
+                (board[index - 4].equals(board[index + 4]) || (board[index - 2].equals(board[index + 2])))) {
+            isSmartMove = true;
+        }
+
+        return isSmartMove;
     }
 
     public static boolean checkWinner(String[] board, int turns) {

@@ -1,4 +1,4 @@
-public class Application {
+public class FizzBuzz {
     public static void main(String[] args) {
 
         fizzBuzz();
@@ -20,8 +20,6 @@ public class Application {
     public static void fizzBuzz(){
 
         for(int i=1;i<100;i++){
-
-            if()
 
             if(i%3==0 && i%5==0){
                 System.out.println("fizzbuzz");

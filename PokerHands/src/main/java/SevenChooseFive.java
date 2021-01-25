@@ -3,17 +3,16 @@ import java.util.List;
 
 public class SevenChooseFive {
 
-
-    public static int[] numOfWins (
-            Card[] possible,
-            int nextIndex,
-            List<Card> currentlySelected,
-            List<List<Card>> allCombinations){
-
-
-
-    }
-    private static void sevenChooseFive(
+//    public static int[] numOfWins (
+//            Card[] possible,
+//            int nextIndex,
+//            List<Card> currentlySelected,
+//            List<List<Card>> allCombinations){
+//
+//
+//
+//    }
+    public static void sevenChooseFive(
             Card[] possible,
             int nextIndex,
             List<Card> currentlySelected,

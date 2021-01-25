@@ -79,20 +79,9 @@ public class Application {
         Card[] hand2Cards = new Card[5];
         Card[] hand3Cards = new Card[7];
 
-        for(int i=0;i<7;i++){
-            hand3Cards[i] = new Card(bothHands[i]);
-        }
 
-        //royal flush
-        //straight flush
-        //four of a kind
-        //full house
-        //flush
-        //straight
-        //three of a kind
-        //two pair
-        //one pair
-        //high card
+
+
 
 
 

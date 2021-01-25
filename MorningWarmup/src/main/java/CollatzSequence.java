@@ -7,25 +7,6 @@ public class CollatzSequence {
         long bigIndex=0;
         for(long i =10000000;i>i/5;i--){
             sequence(i);
-            if(i==10){
-                System.out.println("checking 10s");
-            } else if(i==100){
-                System.out.println("checking 100s");
-            } else if(i==1000){
-                System.out.println("checking 1000s");
-            } else if(i==10000){
-                System.out.println("checking 10000s");
-            } else if(i==100000){
-                System.out.println("checking 100000s");
-            } else if(i==1000000){
-                System.out.println("checking 1000000s");
-            } else if(i==10000000){
-                System.out.println("checking 10000000s");
-            } else if(i==100000000){
-                System.out.println("checking 100000000s");
-            } else if(i==1000000000){
-                System.out.println("checking 1000000000s");
-            }
 
 
 

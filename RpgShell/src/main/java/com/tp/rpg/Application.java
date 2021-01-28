@@ -36,7 +36,7 @@ public class Application {
     private static NonPlayerCharacter setUpEnemy() {
         throw new UnsupportedOperationException();
     }
-
+    //test
     //a and b battle until one is dead
     private static void battle(Character a, Character b) {
         Character attacker = a;

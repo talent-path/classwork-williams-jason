@@ -17,19 +17,30 @@ public class LibraryInMemDao implements LibraryDao{
     public LibraryInMemDao(){
     }
 
-    @Override
-    public void addBook(Book toAdd) throws InvalidYearException, InvalidTitleException, InvalidYearException, InvalidIdException, InvalidAuthorsException {
-        Book newBook = new Book(toAdd);
-        newBook.setBookId(allBooks.size());
 
-        if(newBook.getBookId() == null)
-           throw new InvalidIdException("invalid Id Entered");
-        if(newBook.getAuthors() == null)
-            throw new InvalidIdException("invalid authors Entered");
-        if(newBook.getTitle() == null)
-            throw new InvalidIdException("invalid title Entered");
-        if(newBook.getPublicationYear() == null)
-            throw new InvalidIdException("invalid publication year Entered");
+
+    @Override
+    public Book addBook(Book toAdd) throws InvalidYearException, InvalidTitleException, InvalidIdException, InvalidAuthorsException, InvalidBookException {
+        if(toAdd == null)
+            throw new InvalidBookException("invalid book");
+        if(toAdd.getPublicationYear() == null)
+            throw new InvalidYearException("invalid publication year");
+        if(toAdd.getTitle()==null)
+            throw new InvalidTitleException("invalid title");
+        if(toAdd.getAuthors() == null)
+            throw new InvalidAuthorsException("invalid author(s)");
+
+
+        Book newBook = new Book(toAdd);
+        int maxId = 0;
+        for(int i=0;i<allBooks.size();i++){
+            if(allBooks.get(i).getBookId() > maxId)
+                maxId = allBooks.get(i).getBookId();
+        }
+        newBook.setBookId(maxId+1);
+        allBooks.add(newBook);
+
+        return newBook;
     }
 
     @Override
@@ -126,7 +137,7 @@ public class LibraryInMemDao implements LibraryDao{
     }
 
     @Override
-    public void deleteLibraryBook(Integer bookId) throws InvalidIdException {
+    public void deleteBook(Integer bookId) throws InvalidIdException {
         int removeIndex = -1;
 
         if(bookId == null)

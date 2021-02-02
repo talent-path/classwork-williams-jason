@@ -4,7 +4,6 @@ import com.tp.library.exceptions.*;
 import com.tp.library.models.Book;
 import com.tp.library.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,8 +48,9 @@ public class LibraryController {
     }
 
     @PostMapping("library/add")
-    public void addBook(@RequestBody Book input) throws InvalidBookException, InvalidIdException, InvalidAuthorsException, InvalidTitleException, InvalidYearException {
+    public ResponseEntity<Book> ResponseEntity(@RequestBody Book input) throws InvalidBookException, InvalidIdException, InvalidAuthorsException, InvalidTitleException, InvalidYearException {
         service.addBook(input);
+        return ResponseEntity.ok(input);
     }
 
     //TODO: get rid of all throws replace with try catch blocks

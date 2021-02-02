@@ -3,6 +3,7 @@ package com.tp.library.service;
 import com.tp.library.exceptions.*;
 import com.tp.library.models.Book;
 import com.tp.library.persistence.LibraryDao;
+import com.tp.library.persistence.LibraryInMemDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -53,12 +54,13 @@ public class LibraryService {
         return booksWithYears;
     }
 
-    public void addBook(Book toAdd) throws InvalidBookException, InvalidIdException, InvalidAuthorsException, InvalidTitleException, InvalidYearException {
-        dao.addBook(toAdd);
+    public Book addBook(Book toAdd) throws InvalidBookException, InvalidIdException, InvalidAuthorsException, InvalidTitleException, InvalidYearException {
+        return dao.addBook(toAdd);
+
     }
 
     public void deleteBook(Integer id) throws InvalidIdException {
-        dao.deleteLibraryBook(id);
+        dao.deleteBook(id);
     }
 
 

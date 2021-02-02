@@ -14,7 +14,7 @@ public interface LibraryDao {
 
     void updateLibraryBook(Book book) throws InvalidBookException, InvalidIdException;
 
-    void deleteLibraryBook(Integer bookId) throws InvalidIdException;
+    void deleteBook(Integer bookId) throws InvalidIdException;
 
     List<Book> getAllBooksWithTitle(String title) throws InvalidTitleException;
 
@@ -22,6 +22,8 @@ public interface LibraryDao {
 
     List<Book> getAllBooksWithYear(Integer publicationYear) throws InvalidYearException;
 
-    void addBook(Book input) throws InvalidYearException, InvalidTitleException, InvalidAuthorsException, InvalidIdException;
+    Book addBook(Book input) throws InvalidYearException, InvalidTitleException, InvalidAuthorsException, InvalidIdException, InvalidBookException;
+
+
 
 }

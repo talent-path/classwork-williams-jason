@@ -15,15 +15,15 @@ public class Book {
     private List<String> authors;
     private Integer publicationYear;
 
+    public Book(){
+
+    }
+
     public Book(Integer bookId, String title, List<String> authors, Integer publicationYear){
         this.bookId = bookId;
         this.title = title;
         this.authors = authors;
         this.publicationYear = publicationYear;
-    }
-
-    public Book(String title, List<String> authors, Integer publicationYear) {
-
     }
 
     public Book(Book that){
@@ -42,7 +42,7 @@ public class Book {
         return bookId;
     }
 
-    public void setBookId(Integer bookId) throws InvalidIdException {
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 
@@ -50,7 +50,7 @@ public class Book {
         return title;
     }
 
-    public void setTitle(String title) throws InvalidTitleException {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -58,7 +58,7 @@ public class Book {
         return authors;
     }
 
-    public void setAuthors(List<String> authors)throws InvalidAuthorsException{
+    public void setAuthors(List<String> authors) {
         this.authors = authors;
     }
 
@@ -66,8 +66,7 @@ public class Book {
         return publicationYear;
     }
 
-    public void setPublicationYear(Integer publicationYear)throws InvalidYearException {
+    public void setPublicationYear(Integer publicationYear) {
         this.publicationYear = publicationYear;
     }
-
 }

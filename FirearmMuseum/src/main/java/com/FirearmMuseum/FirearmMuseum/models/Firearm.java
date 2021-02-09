@@ -3,11 +3,10 @@ package com.FirearmMuseum.FirearmMuseum.models;
 public class Firearm {
 
     private String name;
-    private double caliberNumber;
-    private String caliberName;
-    private String manufacturer;
-    private String actionType;
-    private String firearmType;
+    private Caliber linkedCaliber;
+    private String linkedManufacturer;
+    private String linkedActionType;
+    private String linkedFirearmType;
     private int productionDate;
     private int serialNumber;
     private String description;
@@ -17,31 +16,62 @@ public class Firearm {
 
     }
 
-    public Firearm(String name, double caliberNumber, String caliberName, String manufacturer, String actionType,
+    public Firearm(String name, Caliber linkedCaliber, String caliberName, String manufacturer, String actionType,
                    String firearmType, int productionDate, int serialNumber, String description, String donatedBy){
+
         this.name = name;
-        this.caliberNumber = caliberNumber;
-        this.caliberName = caliberName;
-        this.manufacturer = manufacturer;
-        this.actionType = actionType;
-        this.firearmType = firearmType;
+        this.linkedCaliber = linkedCaliber;
+        this.linkedManufacturer = manufacturer;
+        this.linkedActionType = actionType;
+        this.linkedFirearmType = firearmType;
         this.productionDate = productionDate;
         this.serialNumber = serialNumber;
         this.description = description;
         this.donatedBy = donatedBy;
+
     }
 
     public Firearm(Firearm that){
         this.name = that.name;
-        this.caliberNumber = that.caliberNumber;
-        this.caliberName = that.caliberName;
-        this.manufacturer = that.manufacturer;
-        this.actionType = that.actionType;
-        this.firearmType = that.firearmType;
+        this.linkedCaliber = that.linkedCaliber;
+        this.linkedFirearmType = that.linkedFirearmType;
+        this.linkedActionType = that.linkedActionType;
+        this.linkedManufacturer = that.linkedManufacturer;
         this.productionDate = that.productionDate;
         this.serialNumber = that.serialNumber;
         this.description = that.description;
         this.donatedBy = that.donatedBy;
+    }
+    public Caliber getLinkedCaliber() {
+        return linkedCaliber;
+    }
+
+    public void setLinkedCaliber(Caliber linkedCaliber) {
+        this.linkedCaliber = linkedCaliber;
+    }
+
+    public String getLinkedManufacturer() {
+        return linkedManufacturer;
+    }
+
+    public void setLinkedManufacturer(String linkedManufacturer) {
+        this.linkedManufacturer = linkedManufacturer;
+    }
+
+    public String getLinkedActionType() {
+        return linkedActionType;
+    }
+
+    public void setLinkedActionType(String linkedActionType) {
+        this.linkedActionType = linkedActionType;
+    }
+
+    public String getLinkedFirearmType() {
+        return linkedFirearmType;
+    }
+
+    public void setLinkedFirearmType(String linkedFirearmType) {
+        this.linkedFirearmType = linkedFirearmType;
     }
 
     public String getName() {
@@ -50,46 +80,6 @@ public class Firearm {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getCaliberNumber() {
-        return caliberNumber;
-    }
-
-    public void setCaliberNumber(double caliberNumber) {
-        this.caliberNumber = caliberNumber;
-    }
-
-    public String getCaliberName() {
-        return caliberName;
-    }
-
-    public void setCaliberName(String caliberName) {
-        this.caliberName = caliberName;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public String getActionType() {
-        return actionType;
-    }
-
-    public void setActionType(String actionType) {
-        this.actionType = actionType;
-    }
-
-    public String getFirearmType() {
-        return firearmType;
-    }
-
-    public void setFirearmType(String firearmType) {
-        this.firearmType = firearmType;
     }
 
     public int getProductionDate() {

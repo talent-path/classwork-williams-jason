@@ -5,24 +5,28 @@ import com.FirearmMuseum.FirearmMuseum.models.Firearm;
 import com.FirearmMuseum.FirearmMuseum.services.FirearmMuseumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/api")
 public class FirearmMuseumController {
 
     @Autowired
     FirearmMuseumService service;
 
-    @GetMapping
+    @GetMapping("/firearms")
     public List<Firearm> getAllFirearms(){
-        return service.getAllFirearms;
+        return service.getAllFirearms();
     }
 
-    @PostMapping
+    @PostMapping("/firearm")
     public ResponseEntity addFirearm(@RequestBody Firearm toAdd){
-        return service.addFirearm( toAdd );
+
+        Firearm completed = service.addFirearm( toAdd );
+
+        return ResponseEntity.ok(completed);
     }
+
 }

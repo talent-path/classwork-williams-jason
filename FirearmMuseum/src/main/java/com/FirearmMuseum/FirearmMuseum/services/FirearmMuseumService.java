@@ -1,21 +1,28 @@
 package com.FirearmMuseum.FirearmMuseum.services;
 
 import com.FirearmMuseum.FirearmMuseum.models.Firearm;
+//import com.FirearmMuseum.FirearmMuseum.persistence.CaliberDao;
 import com.FirearmMuseum.FirearmMuseum.persistence.FirearmDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class FirearmMuseumService {
 
     @Autowired
-    FirearmDao dao;
+    FirearmDao firearmDao;
+
+//    @Autowired
+//    CaliberDao caliberDao;
 
     public List<Firearm> getAllFirearms(){
-        return dao.getAllFirearms();
+        return firearmDao.getAllFirearms();
     };
 
-    public ResponseEntity addFirearm(Firearm toAdd) {
+    public Firearm addFirearm(Firearm toAdd){
+        return firearmDao.addFirearm(toAdd);
     }
 }

@@ -2,25 +2,28 @@ package com.FirearmMuseum.FirearmMuseum.models;
 
 public class Firearm {
 
+    private Integer firearmId;
     private String name;
-    private Caliber linkedCaliber;
-    private String linkedManufacturer;
-    private String linkedActionType;
-    private String linkedFirearmType;
-    private int productionDate;
-    private int serialNumber;
+    private Integer linkedCaliberSize;
+    private Integer linkedManufacturer;
+    private Integer linkedActionType;
+    private Integer linkedFirearmType;
+    private Integer productionDate;
+    private Integer serialNumber;
     private String description;
     private String donatedBy;
+
 
     public Firearm(){
 
     }
 
-    public Firearm(String name, Caliber linkedCaliber, String caliberName, String manufacturer, String actionType,
-                   String firearmType, int productionDate, int serialNumber, String description, String donatedBy){
+    public Firearm(String name, Integer linkedCaliberSize, Integer manufacturer, Integer actionType,
+                   Integer firearmType, Integer productionDate, Integer serialNumber, String description, String donatedBy, Integer firearmId){
 
+        this.firearmId = firearmId;
         this.name = name;
-        this.linkedCaliber = linkedCaliber;
+        this.linkedCaliberSize = linkedCaliberSize;
         this.linkedManufacturer = manufacturer;
         this.linkedActionType = actionType;
         this.linkedFirearmType = firearmType;
@@ -32,8 +35,9 @@ public class Firearm {
     }
 
     public Firearm(Firearm that){
+        this.firearmId = that.firearmId;
         this.name = that.name;
-        this.linkedCaliber = that.linkedCaliber;
+        this.linkedCaliberSize = that.linkedCaliberSize;
         this.linkedFirearmType = that.linkedFirearmType;
         this.linkedActionType = that.linkedActionType;
         this.linkedManufacturer = that.linkedManufacturer;
@@ -42,35 +46,44 @@ public class Firearm {
         this.description = that.description;
         this.donatedBy = that.donatedBy;
     }
-    public Caliber getLinkedCaliber() {
-        return linkedCaliber;
+
+    public Integer getFirearmId() {
+        return firearmId;
     }
 
-    public void setLinkedCaliber(Caliber linkedCaliber) {
-        this.linkedCaliber = linkedCaliber;
+    public void setFirearmId(Integer firearmId) {
+        this.firearmId = firearmId;
     }
 
-    public String getLinkedManufacturer() {
+    public void setProductionDate(Integer productionDate) {
+        this.productionDate = productionDate;
+    }
+
+    public void setSerialNumber(Integer serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public Integer getLinkedManufacturer() {
         return linkedManufacturer;
     }
 
-    public void setLinkedManufacturer(String linkedManufacturer) {
+    public void setLinkedManufacturer(Integer linkedManufacturer) {
         this.linkedManufacturer = linkedManufacturer;
     }
 
-    public String getLinkedActionType() {
+    public Integer getLinkedActionType() {
         return linkedActionType;
     }
 
-    public void setLinkedActionType(String linkedActionType) {
+    public void setLinkedActionType(Integer linkedActionType) {
         this.linkedActionType = linkedActionType;
     }
 
-    public String getLinkedFirearmType() {
+    public Integer getLinkedFirearmType() {
         return linkedFirearmType;
     }
 
-    public void setLinkedFirearmType(String linkedFirearmType) {
+    public void setLinkedFirearmType(Integer linkedFirearmType) {
         this.linkedFirearmType = linkedFirearmType;
     }
 
@@ -112,6 +125,14 @@ public class Firearm {
 
     public void setDonatedBy(String donatedBy) {
         this.donatedBy = donatedBy;
+    }
+
+    public Integer getLinkedCaliberSize() {
+        return linkedCaliberSize;
+    }
+
+    public void setLinkedCaliberSize(Integer linkedCaliberSize) {
+        this.linkedCaliberSize = linkedCaliberSize;
     }
 
 }

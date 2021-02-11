@@ -3,11 +3,9 @@ package com.FirearmMuseum.FirearmMuseum.persistence;
 import com.FirearmMuseum.FirearmMuseum.models.Firearm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+import com.FirearmMuseum.FirearmMuseum.persistence.mappers.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -20,9 +18,8 @@ public class PostgresFirearmDao implements FirearmDao {
     @Override
     public List<Firearm> getAllFirearms() {
 
-        List<Firearm> allFirearms = template.query("select \"Firearm\".firearmname, \"Firearm\".productionyear, \"Firearm\".description, \"FirearmType\".firearmtypename \n" +
-                "from \"Firearm\"\n" +
-                "inner join \"FirearmType\" on \"Firearm\".firearmtypeid = \"FirearmType\".firearmtypeid",
+        List<Firearm> allFirearms = template.query("SELECT \"Firearm\".firearmid,\"Firearm\".serialnumber,\"Firearm\".description,\"Firearm\".donatedby,\"Firearm\".actiontypeid,\"Firearm\".firearmtypeid,\"Firearm\".manufacturerid,\"Firearm\".firearmname,\"Firearm\".productionyear,\"Firearm\".caliberid\n" +
+                        "FROM \"Firearm\";",
                 new FirearmMapper() );
 
         return allFirearms;
@@ -41,38 +38,16 @@ public class PostgresFirearmDao implements FirearmDao {
                 toAdd.getSerialNumber(),
                 toAdd.getDescription(),
                 toAdd.getDonatedBy(),
-                toAdd.getLinkedActionType(),
-                toAdd.getLinkedFirearmType(),
-                toAdd.getLinkedManufacturer(),
+                toAdd.getActionTypeId(),
+                toAdd.getFirearmTypeId(),
+                toAdd.getManufacturerId(),
                 toAdd.getName(),
                 toAdd.getProductionDate(),
-                toAdd.getLinkedCaliberSize());
+                toAdd.getCaliberId());
 
         toAdd.setFirearmId( firearmId );
 
         return toAdd;
 
-    }
-
-    class FirearmMapper implements RowMapper<Firearm> {
-
-        @Override
-        public Firearm mapRow(ResultSet resultSet, int i) throws SQLException {
-            Firearm mappedFirearm = new Firearm();
-            mappedFirearm.setFirearmId(resultSet.getInt("firearmid"));
-            mappedFirearm.setSerialNumber(resultSet.getInt("serialnumber"));
-            mappedFirearm.setDescription(resultSet.ge);
-
-
-        }
-    }
-
-    class FirearmIdMapper implements RowMapper<Integer>{
-
-
-        @Override
-        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-            return resultSet.getInt("firearmid");
-        }
     }
 }

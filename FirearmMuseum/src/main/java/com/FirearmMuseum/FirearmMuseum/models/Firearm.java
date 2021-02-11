@@ -4,10 +4,10 @@ public class Firearm {
 
     private Integer firearmId;
     private String name;
-    private Integer linkedCaliberSize;
-    private Integer linkedManufacturer;
-    private Integer linkedActionType;
-    private Integer linkedFirearmType;
+    private Integer caliberId;
+    private Integer manufacturerId;
+    private Integer actionTypeId;
+    private Integer firearmTypeId;
     private Integer productionDate;
     private Integer serialNumber;
     private String description;
@@ -18,15 +18,15 @@ public class Firearm {
 
     }
 
-    public Firearm(String name, Integer linkedCaliberSize, Integer manufacturer, Integer actionType,
+    public Firearm(String name, Integer caliberId, Integer manufacturer, Integer actionType,
                    Integer firearmType, Integer productionDate, Integer serialNumber, String description, String donatedBy, Integer firearmId){
 
         this.firearmId = firearmId;
         this.name = name;
-        this.linkedCaliberSize = linkedCaliberSize;
-        this.linkedManufacturer = manufacturer;
-        this.linkedActionType = actionType;
-        this.linkedFirearmType = firearmType;
+        this.caliberId = caliberId;
+        this.manufacturerId = manufacturer;
+        this.actionTypeId = actionType;
+        this.firearmTypeId = firearmType;
         this.productionDate = productionDate;
         this.serialNumber = serialNumber;
         this.description = description;
@@ -37,10 +37,10 @@ public class Firearm {
     public Firearm(Firearm that){
         this.firearmId = that.firearmId;
         this.name = that.name;
-        this.linkedCaliberSize = that.linkedCaliberSize;
-        this.linkedFirearmType = that.linkedFirearmType;
-        this.linkedActionType = that.linkedActionType;
-        this.linkedManufacturer = that.linkedManufacturer;
+        this.caliberId = that.caliberId;
+        this.firearmTypeId = that.firearmTypeId;
+        this.actionTypeId = that.actionTypeId;
+        this.manufacturerId = that.manufacturerId;
         this.productionDate = that.productionDate;
         this.serialNumber = that.serialNumber;
         this.description = that.description;
@@ -63,28 +63,28 @@ public class Firearm {
         this.serialNumber = serialNumber;
     }
 
-    public Integer getLinkedManufacturer() {
-        return linkedManufacturer;
+    public Integer getManufacturerId() {
+        return manufacturerId;
     }
 
-    public void setLinkedManufacturer(Integer linkedManufacturer) {
-        this.linkedManufacturer = linkedManufacturer;
+    public void setManufacturerId(Integer manufacturerId) {
+        this.manufacturerId = manufacturerId;
     }
 
-    public Integer getLinkedActionType() {
-        return linkedActionType;
+    public Integer getActionTypeId() {
+        return actionTypeId;
     }
 
-    public void setLinkedActionType(Integer linkedActionType) {
-        this.linkedActionType = linkedActionType;
+    public void setActionTypeId(Integer actionTypeId) {
+        this.actionTypeId = actionTypeId;
     }
 
-    public Integer getLinkedFirearmType() {
-        return linkedFirearmType;
+    public Integer getFirearmTypeId() {
+        return firearmTypeId;
     }
 
-    public void setLinkedFirearmType(Integer linkedFirearmType) {
-        this.linkedFirearmType = linkedFirearmType;
+    public void setFirearmTypeId(Integer firearmTypeId) {
+        this.firearmTypeId = firearmTypeId;
     }
 
     public String getName() {
@@ -95,7 +95,7 @@ public class Firearm {
         this.name = name;
     }
 
-    public int getProductionDate() {
+    public Integer getProductionDate() {
         return productionDate;
     }
 
@@ -103,7 +103,7 @@ public class Firearm {
         this.productionDate = productionDate;
     }
 
-    public int getSerialNumber() {
+    public Integer getSerialNumber() {
         return serialNumber;
     }
 
@@ -127,12 +127,12 @@ public class Firearm {
         this.donatedBy = donatedBy;
     }
 
-    public Integer getLinkedCaliberSize() {
-        return linkedCaliberSize;
+    public Integer getCaliberId() {
+        return caliberId;
     }
 
-    public void setLinkedCaliberSize(Integer linkedCaliberSize) {
-        this.linkedCaliberSize = linkedCaliberSize;
+    public void setCaliberId(Integer caliberId) {
+        this.caliberId = caliberId;
     }
 
 }

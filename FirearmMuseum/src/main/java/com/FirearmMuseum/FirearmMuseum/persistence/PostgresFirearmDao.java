@@ -97,25 +97,23 @@ public class PostgresFirearmDao implements FirearmDao {
         String newName = toEdit.getName();
         Integer newProductionYear = toEdit.getProductionDate();
         Integer newCaliberId = toEdit.getCaliberId();
-
-
         if(newSerialNum!=null)
-            template.update("UPDATE \"Firearm\" SET \"serialnumber\" = '"+newSerialNum+" WHERE \"firearmid\" = "+id+";");
+            template.update("UPDATE \"Firearm\" SET \"serialnumber\" = '"+newSerialNum+"' WHERE \"firearmid\" = '"+id+"';");
         if(newDescription!=null)
-            template.update("UPDATE \"Firearm\" SET \"description\" = '"+newDescription+" WHERE \"firearmid\" = "+id+";");
+            template.update("UPDATE \"Firearm\" SET \"description\" = '"+newDescription+"' WHERE \"firearmid\" = '"+id+"';");
         if(newDonatedBy!=null)
-            template.update("UPDATE \"Firearm\" SET \"donatedby\" = '"+newDonatedBy+" WHERE \"firearmid\" = "+id+";");
+            template.update("UPDATE \"Firearm\" SET \"donatedby\" = '"+newDonatedBy+"' WHERE \"firearmid\" = '"+id+"';");
         if(newActionTypeId!=null)
-            template.update("UPDATE \"Firearm\" SET \"actiontypeid\" = '"+newActionTypeId+" WHERE \"firearmid\" = "+id+";");
+            template.update("UPDATE \"Firearm\" SET \"actiontypeid\" = '"+newActionTypeId+"' WHERE \"firearmid\" = '"+id+"';");
         if(newFirearmTypeId!=null)
-            template.update("UPDATE \"Firearm\" SET \"firearmtypeid\" = '"+newFirearmTypeId+" WHERE \"firearmid\" = "+id+";");
+            template.update("UPDATE \"Firearm\" SET \"firearmtypeid\" = '"+newFirearmTypeId+"' WHERE \"firearmid\" = '"+id+"';");
         if(newManufacturerId!=null)
-            template.update("UPDATE \"Firearm\" SET \"manufacturerid\" = '"+newManufacturerId+" WHERE \"firearmid\" = "+id+";");
+            template.update("UPDATE \"Firearm\" SET \"manufacturerid\" = '"+newManufacturerId+"' WHERE \"firearmid\" = '"+id+"';");
         if(newName!=null)
-            template.update("UPDATE \"Firearm\" SET \"firearmname\" = '"+newName+" WHERE \"firearmid\" = "+id+";");
+            template.update("UPDATE \"Firearm\" SET \"firearmname\" = '"+newName+"' WHERE \"firearmid\" = '"+id+"';");
         if(newProductionYear!=null)
-            template.update("UPDATE \"Firearm\" SET \"productionyear\" = '"+newProductionYear+" WHERE \"firearmid\" = "+id+";");
+            template.update("UPDATE \"Firearm\" SET \"productionyear\" = '"+newProductionYear+"' WHERE \"firearmid\" = '"+id+"';");
         if(newCaliberId!=null)
-            template.update("UPDATE \"Firearm\" SET \"caliberid\" = '"+newCaliberId+" WHERE \"firearmid\" = "+id+";");
+            template.update("UPDATE \"Firearm\" SET \"caliberid\" = '"+newCaliberId+"' WHERE \"firearmid\" = '"+id+"';");
     }
 }

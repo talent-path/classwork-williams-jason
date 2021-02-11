@@ -20,4 +20,14 @@ public class FirearminMemDao implements FirearmDao {
     public Firearm addFirearm(Firearm toAdd) {
         return null;
     }
+
+    @Override
+    public void removeFirearmById(Integer id) {
+
+    }
+
+    @Override
+    public void editFirearm(Integer id, Firearm toEdit) {
+
+    }
 }

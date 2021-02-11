@@ -1,8 +1,10 @@
 package com.FirearmMuseum.FirearmMuseum.daos;
 
+import com.FirearmMuseum.FirearmMuseum.exceptions.*;
 import com.FirearmMuseum.FirearmMuseum.models.Firearm;
 import com.FirearmMuseum.FirearmMuseum.persistence.PostgresFirearmDao;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.internal.matchers.Null;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +45,9 @@ public class FirearmPostgresDaoTests {
     }
 
     @Test
-    public void addFirearmGoldenPathTest(){
+    public void addFirearmGoldenPathTest()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException, InvalidCaliberIdException,
+            InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         Firearm partialToAdd = new Firearm();
         partialToAdd.setSerialNumber(123);
@@ -84,7 +88,9 @@ public class FirearmPostgresDaoTests {
     }
 
     @Test
-    public void addFirearmInvalidActionType() throws DataIntegrityViolationException{
+    public void addFirearmInvalidActionType()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException, InvalidCaliberIdException,
+            InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -106,7 +112,9 @@ public class FirearmPostgresDaoTests {
     }
 
     @Test
-    public void addFirearmInvalidFirearmType() throws DataIntegrityViolationException{
+    public void addFirearmInvalidFirearmType()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -128,7 +136,9 @@ public class FirearmPostgresDaoTests {
     }
 
     @Test
-    public void addFirearmInvalidManufacturer() throws DataIntegrityViolationException{
+    public void addFirearmInvalidManufacturer()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -150,7 +160,9 @@ public class FirearmPostgresDaoTests {
     }
 
     @Test
-    public void addFirearmInvalidCaliber() throws DataIntegrityViolationException{
+    public void addFirearmInvalidCaliber()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -172,18 +184,23 @@ public class FirearmPostgresDaoTests {
     }
 
     @Test
-    public void addFirearmNullFirearm()throws NullPointerException {
-        try{
+    public void addFirearmNullFirearm()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
-            Firearm completed = toTest.addFirearm(null);
+        try{
+            Firearm toAdd = null;
+            toTest.addFirearm(toAdd);
             fail();
-        } catch (NullPointerException e){
+        } catch (InvalidFirearmException e){
 
         }
     }
 
     @Test
-    public void addFirearmNullSerialNumber() throws NullPointerException{
+    public void addFirearmNullSerialNumber()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -195,7 +212,7 @@ public class FirearmPostgresDaoTests {
             partialToAdd.setManufacturerId(1);
             partialToAdd.setName("test name");
             partialToAdd.setProductionDate(2021);
-            partialToAdd.setCaliberId(2);
+            partialToAdd.setCaliberId(1);
 
             Firearm completed = toTest.addFirearm(partialToAdd);
         } catch (NullPointerException e){
@@ -203,7 +220,10 @@ public class FirearmPostgresDaoTests {
         }
     }
 
-    public void addFirearmNullDescription() throws NullPointerException{
+    @Test
+    public void addFirearmNullDescription()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -215,7 +235,7 @@ public class FirearmPostgresDaoTests {
             partialToAdd.setManufacturerId(1);
             partialToAdd.setName("test name");
             partialToAdd.setProductionDate(2021);
-            partialToAdd.setCaliberId(2);
+            partialToAdd.setCaliberId(1);
 
             Firearm completed = toTest.addFirearm(partialToAdd);
 
@@ -224,7 +244,10 @@ public class FirearmPostgresDaoTests {
         }
     }
 
-    public void addFirearmNullDonatedBy() throws NullPointerException{
+    @Test
+    public void addFirearmNullDonatedBy()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -236,7 +259,7 @@ public class FirearmPostgresDaoTests {
             partialToAdd.setManufacturerId(1);
             partialToAdd.setName("test name");
             partialToAdd.setProductionDate(2021);
-            partialToAdd.setCaliberId(2);
+            partialToAdd.setCaliberId(1);
 
             Firearm completed = toTest.addFirearm(partialToAdd);
 
@@ -245,7 +268,10 @@ public class FirearmPostgresDaoTests {
         }
     }
 
-    public void addFirearmNullActionTypeId() throws NullPointerException{
+    @Test
+    public void addFirearmNullActionTypeId()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -257,16 +283,19 @@ public class FirearmPostgresDaoTests {
             partialToAdd.setManufacturerId(1);
             partialToAdd.setName("test name");
             partialToAdd.setProductionDate(2021);
-            partialToAdd.setCaliberId(2);
+            partialToAdd.setCaliberId(1);
 
             Firearm completed = toTest.addFirearm(partialToAdd);
             fail();
-        } catch (NullPointerException e){
+        } catch (InvalidActionTypeIdException e){
 
         }
     }
 
-    public void addFirearmNullFirearmTypeId() throws NullPointerException{
+    @Test
+    public void addFirearmNullFirearmTypeId()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -278,16 +307,19 @@ public class FirearmPostgresDaoTests {
             partialToAdd.setManufacturerId(1);
             partialToAdd.setName("test name");
             partialToAdd.setProductionDate(2021);
-            partialToAdd.setCaliberId(2);
+            partialToAdd.setCaliberId(1);
 
             Firearm completed = toTest.addFirearm(partialToAdd);
             fail();
-        } catch (NullPointerException e){
+        } catch (InvalidFirearmTypeIdException e){
 
         }
     }
 
-    public void addFirearmNullManufacturerId() throws NullPointerException{
+    @Test
+    public void addFirearmNullManufacturerId()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -303,12 +335,15 @@ public class FirearmPostgresDaoTests {
 
             Firearm completed = toTest.addFirearm(partialToAdd);
             fail();
-        } catch (NullPointerException e){
+        } catch (InvalidManufactureIdException e){
 
         }
     }
 
-    public void addFirearmNullFirearmName() throws NullPointerException{
+    @Test
+    public void addFirearmNullFirearmName()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -324,12 +359,15 @@ public class FirearmPostgresDaoTests {
 
             Firearm completed = toTest.addFirearm(partialToAdd);
             fail();
-        } catch (NullPointerException e){
+        } catch (InvalidFirearmAttributeException e){
 
         }
     }
 
-    public void addFirearmNullProductionDate() throws NullPointerException{
+    @Test
+    public void addFirearmNullProductionDate()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -345,12 +383,15 @@ public class FirearmPostgresDaoTests {
 
             Firearm completed = toTest.addFirearm(partialToAdd);
             fail();
-        } catch (NullPointerException e){
+        } catch (InvalidFirearmAttributeException e){
 
         }
     }
 
-    public void addFirearmNullCaliberId() throws NullPointerException{
+    @Test
+    public void addFirearmNullCaliberId()
+            throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
 
         try{
             Firearm partialToAdd = new Firearm();
@@ -366,7 +407,7 @@ public class FirearmPostgresDaoTests {
 
             Firearm completed = toTest.addFirearm(partialToAdd);
             fail();
-        } catch (NullPointerException e){
+        } catch (InvalidCaliberIdException e){
 
         }
     }

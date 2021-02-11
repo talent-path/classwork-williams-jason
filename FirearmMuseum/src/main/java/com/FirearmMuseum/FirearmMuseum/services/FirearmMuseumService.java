@@ -1,5 +1,6 @@
 package com.FirearmMuseum.FirearmMuseum.services;
 
+import com.FirearmMuseum.FirearmMuseum.exceptions.*;
 import com.FirearmMuseum.FirearmMuseum.models.Firearm;
 //import com.FirearmMuseum.FirearmMuseum.persistence.CaliberDao;
 import com.FirearmMuseum.FirearmMuseum.persistence.FirearmDao;
@@ -22,7 +23,22 @@ public class FirearmMuseumService {
         return firearmDao.getAllFirearms();
     };
 
-    public Firearm addFirearm(Firearm toAdd){
+    public Firearm addFirearm(Firearm toAdd)throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
+            InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
+
+        if(toAdd.getProductionDate() > 2021)
+            throw new InvalidFirearmAttributeException(toAdd.getProductionDate() + " Has not happened yet.");
+        if(toAdd.getProductionDate() < 1288)
+            throw new InvalidFirearmAttributeException(toAdd.getProductionDate() + "  is too early for firearms.");
+
         return firearmDao.addFirearm(toAdd);
+    }
+
+    public void removeFirearmById(Integer id) throws InvalidActionTypeIdException {
+        firearmDao.removeFirearmById(id);
+    }
+
+    public void editFirearm(Integer id, Firearm toEdit){
+        firearmDao.editFirearm(id,toEdit);
     }
 }

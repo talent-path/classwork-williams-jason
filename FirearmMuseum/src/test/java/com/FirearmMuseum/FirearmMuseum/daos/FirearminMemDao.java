@@ -30,4 +30,9 @@ public class FirearminMemDao implements FirearmDao {
     public void editFirearm(Integer id, Firearm toEdit) {
 
     }
+
+    @Override
+    public List<Firearm> getFilteredFirearms(Firearm toSearch) {
+        return null;
+    }
 }

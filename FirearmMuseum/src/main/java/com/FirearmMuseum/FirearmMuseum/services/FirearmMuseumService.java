@@ -41,4 +41,8 @@ public class FirearmMuseumService {
     public void editFirearm(Integer id, Firearm toEdit){
         firearmDao.editFirearm(id,toEdit);
     }
+
+    public List<Firearm> getFilteredFirearms(Firearm toSearch) {
+        return firearmDao.getFilteredFirearms(toSearch);
+    }
 }

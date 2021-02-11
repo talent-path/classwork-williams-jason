@@ -13,4 +13,6 @@ public interface FirearmDao {
     void removeFirearmById(Integer id) throws InvalidActionTypeIdException;
 
     void editFirearm(Integer id, Firearm toEdit);
+
+    List<Firearm> getFilteredFirearms(Firearm toSearch);
 }

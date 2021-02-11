@@ -43,4 +43,9 @@ public class FirearmMuseumController {
 
     }
 
+    @GetMapping("/firearms/filtered")
+    public List<Firearm> getFilteredFirearms(@RequestBody Firearm toSearch){
+        return service.getFilteredFirearms(toSearch);
+    }
+
 }

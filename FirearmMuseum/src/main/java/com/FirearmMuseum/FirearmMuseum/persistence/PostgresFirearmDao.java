@@ -116,4 +116,74 @@ public class PostgresFirearmDao implements FirearmDao {
         if(newCaliberId!=null)
             template.update("UPDATE \"Firearm\" SET \"caliberid\" = '"+newCaliberId+"' WHERE \"firearmid\" = '"+id+"';");
     }
+
+    @Override
+    public List<Firearm> getFilteredFirearms(Firearm toSearch) {
+        Integer newSerialNum = toSearch.getSerialNumber();
+        String newDescription = toSearch.getDescription();
+        String newDonatedBy = toSearch.getDonatedBy();
+        Integer newActionTypeId = toSearch.getActionTypeId();
+        Integer newFirearmTypeId = toSearch.getFirearmTypeId();
+        Integer newManufacturerId = toSearch.getManufacturerId();
+        String newName = toSearch.getName();
+        Integer newProductionYear = toSearch.getProductionDate();
+        Integer newCaliberId = toSearch.getCaliberId();
+
+        String sqlSelect = "";
+
+        if(newSerialNum!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".serialnumber,");
+        if(newDescription!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".description,");
+        if(newDonatedBy!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".donatedby,");
+        if(newActionTypeId!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".actiontypeid,");
+        if(newFirearmTypeId!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".firearmtypeid,");
+        if(newManufacturerId!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".manufacturerid,");
+        if(newName!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".firearmname,");
+        if(newProductionYear!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".productionyear,");
+        if(newCaliberId!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".caliberid,");
+
+        //cut off last comma
+        sqlSelect = sqlSelect.substring(0,sqlSelect.length()-1);
+
+        String sqlQuery = "SELECT ";
+        sqlQuery = sqlQuery.concat(sqlSelect);
+        sqlQuery = sqlQuery.concat(" FROM \"Firearm\" WHERE ");
+
+        if(newSerialNum!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".serialnumber = " + newSerialNum + " AND");
+        if(newDescription!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".description = " + newDescription + " AND");
+        if(newDonatedBy!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".donatedby = " + newDonatedBy + " AND");
+        if(newActionTypeId!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".actiontypeid = " + newActionTypeId + " AND");
+        if(newFirearmTypeId!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".firearmtypeid = " + newFirearmTypeId + " AND");
+        if(newManufacturerId!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".manufacturerid = " + newManufacturerId + " AND");
+        if(newName!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".firearmname = " + newName + " AND");
+        if(newProductionYear!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".productionyear = " + newProductionYear + " AND");
+        if(newCaliberId!=null)
+            sqlSelect = sqlSelect.concat("\"Firearm\".caliberid = " + newCaliberId + " AND");
+
+        sqlQuery = sqlQuery.concat(sqlSelect);
+        sqlQuery = sqlQuery.substring(0,sqlQuery.length()-3);
+
+
+        List<Firearm> filteredFirearms = template.query(sqlQuery,new FirearmMapper());
+
+        return filteredFirearms;
+    }
+
+
 }

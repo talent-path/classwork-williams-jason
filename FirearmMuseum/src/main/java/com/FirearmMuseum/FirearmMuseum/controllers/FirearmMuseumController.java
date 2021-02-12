@@ -48,4 +48,9 @@ public class FirearmMuseumController {
         return service.getFilteredFirearms(toSearch);
     }
 
+    @GetMapping("/firearms/dates/{date1}/{date2}")
+    public List<Firearm> getFirearmsBetweenDates(Integer date1, Integer date2){
+        return service.getFirearmsBetweenDates(date1, date2);
+    }
+
 }

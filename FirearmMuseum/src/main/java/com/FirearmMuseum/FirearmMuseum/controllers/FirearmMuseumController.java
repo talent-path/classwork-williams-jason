@@ -5,6 +5,7 @@ import com.FirearmMuseum.FirearmMuseum.exceptions.*;
 import com.FirearmMuseum.FirearmMuseum.models.Firearm;
 import com.FirearmMuseum.FirearmMuseum.services.FirearmMuseumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,8 +34,14 @@ public class FirearmMuseumController {
     }
 
     @DeleteMapping("/firearm/remove/{id}")
-    public void removeFirearm(@PathVariable Integer id) throws InvalidActionTypeIdException {
-        service.removeFirearmById(id);
+    public String removeFirearm(@PathVariable Integer id) {
+        try {
+            service.removeFirearmById(id);
+        } catch( InvalidFirearmIdException e){
+
+        }
+
+        ResponseEntity.ok();
     }
 
     @PostMapping("/firearm/edit/{id}")
@@ -48,9 +55,15 @@ public class FirearmMuseumController {
         return service.getFilteredFirearms(toSearch);
     }
 
-    @GetMapping("/firearms/dates/{date1}/{date2}")
-    public List<Firearm> getFirearmsBetweenDates(Integer date1, Integer date2){
-        return service.getFirearmsBetweenDates(date1, date2);
+    @GetMapping("/firearm/{id}")
+    public Firearm getFirearmById(@PathVariable Integer id){
+        return service.getFirearmById(id);
     }
+
+
+//    @GetMapping("/firearms/dates/{date1}/{date2}")
+//    public List<Firearm> getFirearmsBetweenDates(Integer date1, Integer date2){
+//        return service.getFirearmsBetweenDates(date1, date2);
+//    }
 
 }

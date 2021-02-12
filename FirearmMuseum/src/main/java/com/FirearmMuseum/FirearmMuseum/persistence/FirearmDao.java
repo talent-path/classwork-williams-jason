@@ -10,9 +10,11 @@ public interface FirearmDao {
 
     Firearm addFirearm(Firearm toAdd) throws InvalidCaliberIdException, InvalidFirearmAttributeException, InvalidManufactureIdException, InvalidFirearmTypeIdException, InvalidActionTypeIdException, InvalidFirearmException;
 
-    void removeFirearmById(Integer id) throws InvalidActionTypeIdException;
+    void removeFirearmById(Integer id) throws InvalidFirearmIdException;
 
     void editFirearm(Integer id, Firearm toEdit);
 
     List<Firearm> getFilteredFirearms(Firearm toSearch);
+
+    Firearm getFirearmById(Integer id);
 }

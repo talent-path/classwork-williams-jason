@@ -34,7 +34,7 @@ public class FirearmMuseumService {
         return firearmDao.addFirearm(toAdd);
     }
 
-    public void removeFirearmById(Integer id) throws InvalidActionTypeIdException {
+    public void removeFirearmById(Integer id) throws InvalidFirearmIdException {
         firearmDao.removeFirearmById(id);
     }
 
@@ -44,5 +44,9 @@ public class FirearmMuseumService {
 
     public List<Firearm> getFilteredFirearms(Firearm toSearch) {
         return firearmDao.getFilteredFirearms(toSearch);
+    }
+
+    public Firearm getFirearmById(Integer id) {
+        return firearmDao.getFirearmById(id);
     }
 }

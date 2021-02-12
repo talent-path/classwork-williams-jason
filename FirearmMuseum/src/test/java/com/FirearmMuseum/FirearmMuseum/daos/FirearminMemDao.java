@@ -35,4 +35,9 @@ public class FirearminMemDao implements FirearmDao {
     public List<Firearm> getFilteredFirearms(Firearm toSearch) {
         return null;
     }
+
+    @Override
+    public Firearm getFirearmById(Integer id) {
+        return null;
+    }
 }

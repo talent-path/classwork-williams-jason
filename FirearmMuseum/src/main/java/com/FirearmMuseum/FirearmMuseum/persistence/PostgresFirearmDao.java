@@ -89,7 +89,18 @@ public class PostgresFirearmDao implements FirearmDao {
 
 
     @Override
-    public void editFirearm(Integer id, Firearm toEdit) {
+    public void editFirearm(Integer id, Firearm toEdit) throws InvalidFirearmIdException {
+
+        boolean idExists = false;
+        for (int i = 0; i < getAllFirearms().size(); i++) {
+            if(getAllFirearms().get(i).getFirearmId()==id){
+                idExists=true;
+            }
+        }
+
+        if(!idExists)
+            throw new InvalidFirearmIdException("The id entered is invalid");
+
         Integer newSerialNum = toEdit.getSerialNumber();
         String newDescription = toEdit.getDescription();
         String newDonatedBy = toEdit.getDonatedBy();

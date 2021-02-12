@@ -12,7 +12,7 @@ public interface FirearmDao {
 
     void removeFirearmById(Integer id) throws InvalidFirearmIdException;
 
-    void editFirearm(Integer id, Firearm toEdit);
+    void editFirearm(Integer id, Firearm toEdit) throws InvalidFirearmIdException;
 
     List<Firearm> getFilteredFirearms(Firearm toSearch);
 

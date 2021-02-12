@@ -38,7 +38,7 @@ public class FirearmMuseumService {
         firearmDao.removeFirearmById(id);
     }
 
-    public void editFirearm(Integer id, Firearm toEdit){
+    public void editFirearm(Integer id, Firearm toEdit) throws InvalidFirearmIdException {
         firearmDao.editFirearm(id,toEdit);
     }
 

@@ -113,7 +113,7 @@ public class FirearmPostgresDaoGoldenPathTests {
     @Test
     public void editFirearmGoldenPathTest()
             throws InvalidFirearmAttributeException, InvalidFirearmException, InvalidActionTypeIdException,
-            InvalidFirearmTypeIdException, InvalidManufactureIdException, InvalidCaliberIdException {
+            InvalidFirearmTypeIdException, InvalidManufactureIdException, InvalidCaliberIdException, InvalidFirearmIdException {
 
         Firearm partialToAdd = new Firearm();
         partialToAdd.setSerialNumber(123);

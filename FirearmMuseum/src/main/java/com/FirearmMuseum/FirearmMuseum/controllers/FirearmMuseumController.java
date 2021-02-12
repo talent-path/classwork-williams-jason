@@ -38,15 +38,22 @@ public class FirearmMuseumController {
         try {
             service.removeFirearmById(id);
         } catch( InvalidFirearmIdException e){
-
+            return e.getMessage();
         }
 
-        ResponseEntity.ok();
+        return "The firearm with id "+id+" was removed.";
     }
 
     @PostMapping("/firearm/edit/{id}")
-    public void editFirearm(@PathVariable Integer id,@RequestBody Firearm toEdit){
-        service.editFirearm(id,toEdit);
+    public String editFirearm(@PathVariable Integer id,@RequestBody Firearm toEdit){
+
+        try {
+            service.editFirearm(id,toEdit);
+        } catch( InvalidFirearmIdException e){
+            return e.getMessage();
+        }
+
+        return "The firearm with id "+id+" was edited.";
 
     }
 

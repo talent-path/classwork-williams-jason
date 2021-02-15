@@ -17,4 +17,6 @@ public interface FirearmDao {
     List<Firearm> getFilteredFirearms(Firearm toSearch);
 
     Firearm getFirearmById(Integer id) throws InvalidFirearmIdException;
+
+    List<Firearm> getFirearmsByYearRange(int startYear, int endYear);
 }

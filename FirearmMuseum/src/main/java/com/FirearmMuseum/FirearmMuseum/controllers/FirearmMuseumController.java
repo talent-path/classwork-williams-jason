@@ -81,6 +81,11 @@ public class FirearmMuseumController {
         return ResponseEntity.ok(retrieved);
     }
 
+    @GetMapping("/firearms/from/{startYear}/to/{endYear}")
+    public List<Firearm> getFirearmsByYearRange(@PathVariable Integer startYear,@PathVariable Integer endYear){
+        return service.getFirearmsByYearRange(startYear,endYear);
+    }
+
 
 //    @GetMapping("/firearms/dates/{date1}/{date2}")
 //    public List<Firearm> getFirearmsBetweenDates(Integer date1, Integer date2){

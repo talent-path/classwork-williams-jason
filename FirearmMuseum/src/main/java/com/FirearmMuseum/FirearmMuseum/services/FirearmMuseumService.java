@@ -49,4 +49,8 @@ public class FirearmMuseumService {
     public Firearm getFirearmById(Integer id) throws InvalidFirearmIdException {
         return firearmDao.getFirearmById(id);
     }
+
+    public List<Firearm> getFirearmsByYearRange(int startYear, int endYear) {
+        return firearmDao.getFirearmsByYearRange(startYear,endYear);
+    }
 }

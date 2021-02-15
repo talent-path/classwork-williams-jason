@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import com.FirearmMuseum.FirearmMuseum.persistence.mappers.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -214,6 +215,16 @@ public class PostgresFirearmDao implements FirearmDao {
         if(toReturn==null)
             throw new InvalidFirearmIdException("Firearm with id " + id + " does not exist");
         return toReturn;
+    }
+
+    @Override
+    public List<Firearm> getFirearmsByYearRange(int startYear, int endYear) {
+        List<Firearm> firearmsInYearRange = template.query("SELECT * \n" +
+                "from \"Firearm\"\n" +
+                "WHERE \"productionyear\" BETWEEN '1500' AND '1899';",
+                new FirearmMapper() );
+
+        return firearmsInYearRange;
     }
 
 

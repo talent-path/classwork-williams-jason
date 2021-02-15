@@ -3,6 +3,7 @@ package com.FirearmMuseum.FirearmMuseum.persistence;
 import com.FirearmMuseum.FirearmMuseum.exceptions.*;
 import com.FirearmMuseum.FirearmMuseum.models.Firearm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import com.FirearmMuseum.FirearmMuseum.persistence.mappers.*;
@@ -27,7 +28,7 @@ public class PostgresFirearmDao implements FirearmDao {
     }
 
     @Override
-    public Firearm addFirearm(Firearm toAdd) throws InvalidCaliberIdException, InvalidFirearmAttributeException, InvalidManufactureIdException, InvalidFirearmTypeIdException, InvalidActionTypeIdException, InvalidFirearmException {
+    public Firearm addFirearm(Firearm toAdd) throws InvalidCaliberIdException, InvalidFirearmAttributeException, InvalidManufactureIdException, InvalidFirearmTypeIdException, InvalidActionTypeIdException, InvalidFirearmException, DataIntegrityViolationException {
 
         //Integer firearmId = template.queryForObject("INSERT INTO \"Firearm\" \"serialnumber\",\"description\",+\"donatedby\",\"actiontypeid\",\"firearmtypeid\",\"manufacturerid\",\"firearmname\",\"productionyear\" VALUES (?,?,?,?,?,?,?,?) RETURNING \"firearmid\";",
         //        new FirearmMapper(),toAdd.getSerialNumber(),toAdd.getDescription(),toAdd.getDonatedBy(), toAdd.getLinkedActionType(),toAdd.getLinkedFirearmType(),toAdd.getLinkedManufacturer(),toAdd.getName(),toAdd.getProductionDate());
@@ -48,22 +49,27 @@ public class PostgresFirearmDao implements FirearmDao {
         if(toAdd.getCaliberId()==null)
             throw new InvalidCaliberIdException("The caliber entered was null");
 
+        try {
+            Integer firearmId = template.queryForObject("insert into \"Firearm\" (\"serialnumber\",\"description\",\"donatedby\",\"actiontypeid\",\n" +
+                            "\t\t\t\t\t   \"firearmtypeid\",\"manufacturerid\",\"firearmname\",\"productionyear\",\"caliberid\")\n" +
+                            "VALUES (?,?,?,?,?,?,?,?,?) RETURNING \"firearmid\";",
+                    new FirearmIdMapper(),
+                    toAdd.getSerialNumber(),
+                    toAdd.getDescription(),
+                    toAdd.getDonatedBy(),
+                    toAdd.getActionTypeId(),
+                    toAdd.getFirearmTypeId(),
+                    toAdd.getManufacturerId(),
+                    toAdd.getName(),
+                    toAdd.getProductionDate(),
+                    toAdd.getCaliberId());
+                    toAdd.setFirearmId( firearmId );
+        } catch(DataIntegrityViolationException e){
+            throw new DataIntegrityViolationException("An invalid id has been entered.");
+        }
 
-        Integer firearmId = template.queryForObject("insert into \"Firearm\" (\"serialnumber\",\"description\",\"donatedby\",\"actiontypeid\",\n" +
-                "\t\t\t\t\t   \"firearmtypeid\",\"manufacturerid\",\"firearmname\",\"productionyear\",\"caliberid\")\n" +
-                "VALUES (?,?,?,?,?,?,?,?,?) RETURNING \"firearmid\";",
-                new FirearmIdMapper(),
-                toAdd.getSerialNumber(),
-                toAdd.getDescription(),
-                toAdd.getDonatedBy(),
-                toAdd.getActionTypeId(),
-                toAdd.getFirearmTypeId(),
-                toAdd.getManufacturerId(),
-                toAdd.getName(),
-                toAdd.getProductionDate(),
-                toAdd.getCaliberId());
 
-        toAdd.setFirearmId( firearmId );
+
         if(toAdd.getFirearmId()==null)
             throw new InvalidFirearmAttributeException("The Firearm id was null");
         return toAdd;
@@ -74,13 +80,13 @@ public class PostgresFirearmDao implements FirearmDao {
     public void removeFirearmById(Integer id) throws InvalidFirearmIdException {
         boolean idExists = false;
         for (int i = 0; i < getAllFirearms().size(); i++) {
-            if(getAllFirearms().get(i).getFirearmId()==id){
+            if(getAllFirearms().get(i).getFirearmId().equals(id)){
                 idExists=true;
             }
         }
         if(idExists) {
             template.update("DELETE FROM \"Firearm\"\n" +
-                    "WHERE \"Firearm\".firearmid = \'" + id + "\';");
+                    "WHERE \"Firearm\".firearmid = '" + id + "';");
         } else {
             throw new InvalidFirearmIdException("The firearm with that id doesnt exist or was already deleted");
         }
@@ -93,7 +99,7 @@ public class PostgresFirearmDao implements FirearmDao {
 
         boolean idExists = false;
         for (int i = 0; i < getAllFirearms().size(); i++) {
-            if(getAllFirearms().get(i).getFirearmId()==id){
+            if(getAllFirearms().get(i).getFirearmId().equals(id)){
                 idExists=true;
             }
         }
@@ -197,7 +203,7 @@ public class PostgresFirearmDao implements FirearmDao {
     }
 
     @Override
-    public Firearm getFirearmById(Integer id) {
+    public Firearm getFirearmById(Integer id) throws InvalidFirearmIdException {
     Firearm toReturn = null;
 
         for (int i = 0; i < getAllFirearms().size(); i++) {
@@ -205,7 +211,8 @@ public class PostgresFirearmDao implements FirearmDao {
                 toReturn = getAllFirearms().get(i);
             }
         }
-
+        if(toReturn==null)
+            throw new InvalidFirearmIdException("Firearm with id " + id + " does not exist");
         return toReturn;
     }
 

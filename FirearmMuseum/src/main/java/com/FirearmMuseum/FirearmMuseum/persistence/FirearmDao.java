@@ -16,5 +16,5 @@ public interface FirearmDao {
 
     List<Firearm> getFilteredFirearms(Firearm toSearch);
 
-    Firearm getFirearmById(Integer id);
+    Firearm getFirearmById(Integer id) throws InvalidFirearmIdException;
 }

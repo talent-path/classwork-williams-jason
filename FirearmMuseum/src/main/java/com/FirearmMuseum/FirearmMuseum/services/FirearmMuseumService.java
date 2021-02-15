@@ -21,7 +21,7 @@ public class FirearmMuseumService {
 
     public List<Firearm> getAllFirearms(){
         return firearmDao.getAllFirearms();
-    };
+    }
 
     public Firearm addFirearm(Firearm toAdd)throws InvalidFirearmTypeIdException, InvalidActionTypeIdException,
             InvalidCaliberIdException, InvalidManufactureIdException, InvalidFirearmAttributeException, InvalidFirearmException  {
@@ -46,7 +46,7 @@ public class FirearmMuseumService {
         return firearmDao.getFilteredFirearms(toSearch);
     }
 
-    public Firearm getFirearmById(Integer id) {
+    public Firearm getFirearmById(Integer id) throws InvalidFirearmIdException {
         return firearmDao.getFirearmById(id);
     }
 }

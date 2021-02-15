@@ -148,8 +148,4 @@ public class FirearmPorstgresDaoInvalidInputTests {
 
     }
 
-    public void getFilteredFirearmInvalidInputTest(){
-
-    }
-
 }

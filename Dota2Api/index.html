@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dota 2 Account info</title>
 </head>
-<body style="text-align: center;">
+
+<body style="text-align: center; height: 100%; width: 100%; background: url(https://cdn4.geckoandfly.com/wp-content/uploads/2014/10/frosty_diet_by_dcneil-d6s293j.jpg); background-size: cover;">
     <h1>Dota 2 Player and match information</h1>
     <h3 id="reportHeader"></h3>
-    <img id="profileIcon">
+    <div id ="test123" style="width: 100%; height: min-content; border: 10px black; align-content: center;">
+        <img id="profileIcon" style="width: min-content; height: min-content; border: 10px black; align-content: center;">
+    </div>
+    
     <div id="profileInfo"></div>
     <span id="dotaDashboard">
         <div>
@@ -20,7 +24,10 @@
             <button onclick="getRecentGames()">Get recent games </button>
         </div>
         <h2 id="matchReport"></h2>
-        <span id="recentMatches" style="width: 50%;"></span>
+        <div id="recentMatchTop"></div>
+        <div id="recentMatchesContainer" style="align-content: center; width: fit-content; height: min-content; margin: 0;display:inline-block;text-align: left; background-color:rgb(100, 149, 237,0.5); border:5px;border-style: solid;border-color: black;visibility: hidden;">
+            <div id="recentMatches" ></div>
+        </div>
     </span>
 
     

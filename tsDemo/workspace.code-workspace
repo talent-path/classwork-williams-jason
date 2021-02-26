@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "../HelloWorld"
+		},
+		{
+			"path": "../Dota2Api"
+		},
+		{
+			"path": "../GuessingGame"
+		},
+		{
+			"path": "../weather"
+		},
+		{
+			"path": "../myfirstsite"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
